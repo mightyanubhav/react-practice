@@ -1,0 +1,1 @@
+export const link = "https://healux.in/wp-content/uploads/2020/11/ChickenBiryani.jpg";

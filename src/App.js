@@ -3,19 +3,38 @@ import ReactDOM from "react-dom/client";
 import RestCard from "./components/restCard";
 import config from "./utils/mockData";
 
-const Wrapper = () =>{
-    const [first, second] = config;
-    return (
-       
-        <div className="wrapper">
-           {
-               config.map((x, index) => <RestCard key={index} name = {x.name} veg = {x.veg} rating = {x.rating}/>)
-           }
-           <RestCard {...second} />
-        </div>
-    );
-}
+import { useState } from "react";
 
+const Wrapper = () => {
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+  const [count, setCount] = useState(config);
+
+  const handleFilter = () => {
+    let filterList = count.filter((x) => x.veg === true);
+    setCount(filterList);
+  };
+
+  
+  console.log(count);
+
+  return (
+      <div className="wrapper">
+        <button
+          className="butt"
+          onClick={handleFilter}
+        >
+          press me for magic
+        </button>
+        {
+          count.map((x) => (
+            <RestCard key={x.name} name={x.name} veg={x.veg} rating={x.rating} />
+          ))
+        }
+      </div>
+   
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Wrapper />);
+
